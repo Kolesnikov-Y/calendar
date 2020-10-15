@@ -1,38 +1,287 @@
-.App {
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 1200px; 
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+/* massages */
+.massage-error{
+  width: 200px; 
+  height: auto;
+  background-color: rgba(255, 0, 0, 0.623);
+  color: white; 
+  font-size: 14px;
+  font-weight: bold;
+  border: 2px solid  rgb(116, 0, 0); 
+  border-radius: 3px;
+  animation: show .3s forwards;
+}
+
+.massage-error__arrow{
+  font-size: 16px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* calendar */
+
+.calendar-body{
+    position: relative;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.calendar-item{
+    position: relative;
+    width: 250px; 
+    height: 30px;
+    /* border-bottom: 1px solid lightgrey; */
+    display: flex;
+    justify-content: flex-start;
+}
+
+.calendar-item:nth-child(2n){
+  border-bottom: 1px solid lightgrey;
+}
+.calendar-item:nth-child(2n) .calendar-item__time{
+  font-size: 12px;
+}
+
+.calendar-item:last-child{
+  border: none;
+  height: 0;
+}
+
+.calendar-item__time{
+    height: 100%;
+    flex: 0 0 20%;
+    /* border: 1px solid green;  */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+   
+    color: grey; 
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-weight: 200;
+}
+
+.time__half{
+    font-size: 12px;
+}
+
+.calendar-item__body{
+    position: relative;
+    height: 100%;
+    flex: 0 0 80%;
+    cursor: pointer;
+    transition: .3s;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-start;
+    /* border: 1px solid brown;  */
+}
+
+.calendar-item__body:hover{
+    background-color: #6e9fcf4b;
+}
+
+.calendar-item__body-item{
+  /* position: absolute; */
+  top: 0; 
+  left: 0;
+  /* width: 200px; */
+  /* height: 30px; */
+  transition: .5s;
+  background-color: #E2ECF5;
+  border-left: 2px solid  #6E9ECF;
+  z-index: 99;
+  flex: 1 0 auto;
+}
+
+/* ============= active event tab ================ */
+
+.event-window{
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 300px;
+    height: 120px;
+    transition: .5s;
+    background-color: #E2ECF5;
+    border-right: 2px solid  #6E9ECF;
+    z-index: 99;
+    animation: show .5s ease;
+    animation-fill-mode: forwards; 
+}
+
+@keyframes show {
+  0% {
+    height: 0;
+    left: -100;
+    opacity: 0;
+  }
+
+  25%{
+    height: 15px;
+    left: -75;
+    opacity: 0.3;
+  }
+  50%{
+    height: 30px;
+    left: -50;
+    opacity: 0.5;
+  }
+  75%{
+    height: 45px;
+    left: -25;
+    opacity: 0.7;
+  }
+  100%{
+    height: auto;
+    left: 100%;
+    opacity: 1;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.event-window__form{
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center; 
+  justify-content: space-between;
+  transition: .3s;
+}
+
+.event-window__input{
+  width: 180px;
+  height: 20px;
+  height: auto;
+  padding: 1px 3px;
+  border: none; 
+  background-color: #fff;
+  color: #000000;
+  border-radius: 3px;
+  z-index: 99;
+  margin-top: 5px;
+}
+.event-window__input:hover{
+  background-color: #7abcff2c;
+  border: 2px solid rgba(0, 0, 0, 0.212);
+}
+.event-window__input:focus{
+  background-color: white;
+  border: 2px solid rgb(0, 0, 0);
+}
+.event-window__submit{
+  width: 180px;
+  height: 20px;
+  border: 2px solid #000000;
+  background-color: rgb(17, 0, 255);
+  font-size: 12px;
+  cursor: pointer;
   color: white;
+  border-radius: 3px;
+  z-index: 99;
+  margin-top: 5px;
+  text-transform: uppercase;
 }
-
-.App-link {
-  color: #61dafb;
+.event-window__submit:hover{
+  border: 2px solid white;
+  background-color: rgb(0, 153, 255);
+  color: white; 
 }
+ /*  ================ loader ============== */
 
-@keyframes App-logo-spin {
-  from {
+ .lds-spinner {
+    color: official;
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-spinner div {
+    transform-origin: 40px 40px;
+    animation: lds-spinner 1.2s linear infinite;
+  }
+  .lds-spinner div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 37px;
+    width: 6px;
+    height: 18px;
+    border-radius: 20%;
+    background: black;
+  }
+  .lds-spinner div:nth-child(1) {
     transform: rotate(0deg);
+    animation-delay: -1.1s;
   }
-  to {
-    transform: rotate(360deg);
+  .lds-spinner div:nth-child(2) {
+    transform: rotate(30deg);
+    animation-delay: -1s;
   }
-}
+  .lds-spinner div:nth-child(3) {
+    transform: rotate(60deg);
+    animation-delay: -0.9s;
+  }
+  .lds-spinner div:nth-child(4) {
+    transform: rotate(90deg);
+    animation-delay: -0.8s;
+  }
+  .lds-spinner div:nth-child(5) {
+    transform: rotate(120deg);
+    animation-delay: -0.7s;
+  }
+  .lds-spinner div:nth-child(6) {
+    transform: rotate(150deg);
+    animation-delay: -0.6s;
+  }
+  .lds-spinner div:nth-child(7) {
+    transform: rotate(180deg);
+    animation-delay: -0.5s;
+  }
+  .lds-spinner div:nth-child(8) {
+    transform: rotate(210deg);
+    animation-delay: -0.4s;
+  }
+  .lds-spinner div:nth-child(9) {
+    transform: rotate(240deg);
+    animation-delay: -0.3s;
+  }
+  .lds-spinner div:nth-child(10) {
+    transform: rotate(270deg);
+    animation-delay: -0.2s;
+  }
+  .lds-spinner div:nth-child(11) {
+    transform: rotate(300deg);
+    animation-delay: -0.1s;
+  }
+  .lds-spinner div:nth-child(12) {
+    transform: rotate(330deg);
+    animation-delay: 0s;
+  }
+  @keyframes lds-spinner {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
