@@ -1,7 +1,7 @@
 import React from 'react'
 // import { useEffect } from 'react';
 import { useState } from 'react';
-import { ActiveEvent } from './ActiveEvent';
+import { ActiveEvent } from './Event/ActiveEvent';
 import { BodyItem } from './BodyItem';
 
 export const CalendarItem = (props) => {

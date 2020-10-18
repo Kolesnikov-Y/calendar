@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { ButtonGroup } from './ButtonGroup';
+import {  ChangeEvent } from './Event/ChangeEvent';
 
 export const BodyItem = props => {
 /* 
@@ -11,17 +11,18 @@ export const BodyItem = props => {
     4. Устарнить баг с нажатием на див, что бы не появлялось окно Active event
 
 */
-    const [state, setState] = useState({isVisible: false})
+    // const [state, setState] = useState({isVisible: false})
 
     function clickHandler(e) {
-        setState({isVisible: true})
+        // setState({isVisible: !state.isVisible})
         console.log("say hello");
     }
 
     return (
         <div className="calendar-item__body-item" onClick={clickHandler}>
                   {props.title}
-            {state.isVisible ?  <ButtonGroup/> : null}
+            {/* {state.isVisible ?  <ButtonGroup/> : null} */}
+            <ChangeEvent text={props.title}/>
         </div>
     )
 }

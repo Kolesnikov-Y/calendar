@@ -100,8 +100,7 @@
 }
 
 .calendar-item__body-item{
-  top: 0; 
-  left: 0;
+  max-width: 180px;
   transition: .5s;
   background-color: #E2ECF5;
   border-left: 2px solid  #6E9ECF;
@@ -109,22 +108,31 @@
   flex: 1 0 auto;
 }
 
-.button-group{
+.changeEvent{
   position: absolute;
   width: 300px;
-  height: 60px;
-  right: -100%;
+  height: auto;
+  right: -300px;
   top: 0;
   border: 1px solid red;
+  z-index: 300;
 }
-.button-group__item{
-  width: 50px;
+
+.event-window-changeEvent{
+  display: flex;
+  justify-content: flex-end;
+}
+/*  вот єто переписать  */
+
+.changeEvent__item{
+  width: 30px;
   height: 30px;
   border: 2px solid black;
   border-radius: 3px;
   margin: 5px 10px 0; 
   color: white;
 }
+/* ============ */
 
 .btn-edit{
   background-color: rgb(54, 134, 51);
@@ -145,6 +153,28 @@
   color: black;
   background-color: rgba(190, 50, 50, 0.25);
 }
+
+.changeEvent-defaultTxt{
+  width: 100%;
+  padding: 0 30px;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.changeEvent-defaultTxt__title{
+  font-size: 24px;
+  font-weight: 800;
+  color: black;
+  padding-bottom: 2px;
+  border-bottom: 3px solid #6E9ECF;
+}
+
+.changeEvent-defaultTxt__time{
+  font-size: 16px;
+  font-weight: 200;
+  color: rgba(0, 0, 0, 0.4);
+  padding-bottom: 2px;
+}
 /* ============= active event tab ================ */
 
 .event-window{
@@ -152,10 +182,9 @@
     top: 0; 
     left: 0;
     width: 300px;
-    height: 120px;
+    height: auto;
     transition: .5s;
-    background-color: #E2ECF5;
-    border-right: 2px solid  #6E9ECF;
+    border: 2px solid  #6E9ECF;
     z-index: 99;
     animation: show .5s ease;
     animation-fill-mode: forwards; 
@@ -190,14 +219,101 @@
   }
 }
 
-.event-window__form{
+.event-window-container{
+  position: relative;
   width: 100%;
   height: 100%;
+  margin: 0 auto;
+}
+
+.event-window__closeBtn{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.closeBtn-wrapper{
+  width: 40px;
+  height: 40px;
+  transition: .3s;
+}
+
+.closeBtn-wrapper:hover .closeBtn-info{
+  animation: showTEXT .3s forwards;
+  animation-delay: .2s;
+}
+
+.closeBtn{
+  position: relative;
+  margin: 0 auto;
+  /* top: 15px; */
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  /* transform: rotate(45deg); */
+}
+.closeBtn:hover{
+  background-color: rgb(201, 201, 201);
+}
+
+
+.closeBtn::after{
+  content: '';
+  position: absolute;
+  top: 40%;
+  right: 25%;
+  width: 15px;
+  height: 0;
+  border-top: 3px solid black;
+  transform: rotate(45deg);
+}
+
+.closeBtn::before{
+  content: '';
+  position: absolute;
+  top: 40%;
+  right: 25%;
+  width: 15px;
+  height: 0;
+  border-top: 3px solid black;
+  transform: rotate(135deg);
+}
+
+.closeBtn-info{
+  position: relative;
+  background-color: rgba(0, 153, 255, 0.4);
+  visibility: hidden;
+  transition: .3s;
+  text-align: center;
+  font-size: 14px;
+}
+
+@keyframes showTEXT{
+  0%{
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+  100%{
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.event-window__form{
+  width: 300px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center; 
-  justify-content: space-between;
+  justify-content: flex-start;
   transition: .3s;
+  z-index: 299;
 }
 
 .event-window__input{
@@ -205,7 +321,7 @@
   height: 20px;
   height: auto;
   padding: 1px 3px;
-  border: none; 
+  border: 2px solid balck; 
   background-color: #fff;
   color: #000000;
   border-radius: 3px;
@@ -213,11 +329,9 @@
   margin-top: 5px;
 }
 .event-window__input:hover{
-  background-color: #7abcff2c;
   border: 2px solid rgba(0, 0, 0, 0.212);
 }
 .event-window__input:focus{
-  background-color: white;
   border: 2px solid rgb(0, 0, 0);
 }
 .event-window__submit{
