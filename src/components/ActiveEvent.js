@@ -52,7 +52,7 @@ export const ActiveEvent = props => {
                         placeholder="start in minutes"
                         onChange={changeHandler} 
                         className="event-window__input"/>
-                {!value.start || value.start >= 30 ? <MassageError massage="max value need to be 30! pleace enter value < 30"/> : null}
+                {!value.start || value.start >= 30  ? <MassageError massage="max value need to be 30! pleace enter value < 30"/> : null}
 
                 <input type="number" 
                         name="duration" 

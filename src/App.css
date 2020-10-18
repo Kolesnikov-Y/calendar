@@ -90,6 +90,7 @@
     transition: .3s;
     z-index: 1;
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
     /* border: 1px solid brown;  */
 }
