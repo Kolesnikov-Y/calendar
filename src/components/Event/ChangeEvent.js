@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from './Button';
 import CloseBtn from './CloseBtn'
+import { EventForm } from './EventForm';
 
 export const ChangeEvent = (props) => {
     return (
@@ -17,7 +18,7 @@ export const ChangeEvent = (props) => {
                     <br/>
                     <span className="changeEvent-defaultTxt__time">time</span>
                 </div>
-
+               <EventForm />
             
             </div>
     )
