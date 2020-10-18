@@ -83,7 +83,7 @@
 }
 
 .calendar-item__body{
-    position: relative;
+    /* position: relative; */
     height: 100%;
     flex: 0 0 80%;
     cursor: pointer;
@@ -100,11 +100,8 @@
 }
 
 .calendar-item__body-item{
-  /* position: absolute; */
   top: 0; 
   left: 0;
-  /* width: 200px; */
-  /* height: 30px; */
   transition: .5s;
   background-color: #E2ECF5;
   border-left: 2px solid  #6E9ECF;
@@ -112,6 +109,42 @@
   flex: 1 0 auto;
 }
 
+.button-group{
+  position: absolute;
+  width: 300px;
+  height: 60px;
+  right: -100%;
+  top: 0;
+  border: 1px solid red;
+}
+.button-group__item{
+  width: 50px;
+  height: 30px;
+  border: 2px solid black;
+  border-radius: 3px;
+  margin: 5px 10px 0; 
+  color: white;
+}
+
+.btn-edit{
+  background-color: rgb(54, 134, 51);
+  transition: .5s;
+}
+
+.btn-delete{
+  background-color: rgb(190, 50, 50);
+  transition: .5s;
+}
+
+.btn-edit:hover{
+  color: black;
+  background-color: rgba(54, 134, 51, 0.25);
+}
+
+.btn-delete:hover{
+  color: black;
+  background-color: rgba(190, 50, 50, 0.25);
+}
 /* ============= active event tab ================ */
 
 .event-window{

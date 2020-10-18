@@ -7,9 +7,8 @@ import { BodyItem } from './BodyItem';
 export const CalendarItem = (props) => {
     const [state, setState ] = useState({value: false})
 
-    function handelOpen() {
+    function handelOpen(e) {
         setState({...state, value: !state.value })
-        console.log("this action from ", + props.id);
     }
 
     return(
