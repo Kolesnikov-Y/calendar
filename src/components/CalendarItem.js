@@ -17,6 +17,7 @@ export const CalendarItem = (props) => {
                 <span className="time">{props.time}</span>
             </div>
             { state.value ? <ActiveEvent time={props.time} id={props.id}/> : null}
+            
             <div className="calendar-item__body" onClick={handelOpen}>
                {props.items.length ? props.items.map(i => <BodyItem key={i.id} title={i.title}/>): null} 
             </div>

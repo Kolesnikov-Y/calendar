@@ -21,7 +21,6 @@ export const BodyItem = props => {
     return (
         <div className="calendar-item__body-item" onClick={clickHandler}>
                   {props.title}
-            {/* {state.isVisible ?  <ButtonGroup/> : null} */}
             <ChangeEvent text={props.title}/>
         </div>
     )
