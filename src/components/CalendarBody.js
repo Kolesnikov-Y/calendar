@@ -6,7 +6,7 @@ export const CalendarBody = () => {
      const items = useSelector(state => state.calendar.calendarTime);
     return(
         <div className="calendar-body">
-          {items.map(i => <CalendarItem key={i.id} time={i.time} id={i.id} items={i.items} isOpenModal={i.isOpen}/>)}
+          {items.map(i => <CalendarItem key={i.id} time={i.time} id={i.id} items={i.items}/>)}
         </div>
     )
 }
