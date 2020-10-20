@@ -1,16 +1,16 @@
-import React from 'react'
+import React from 'react'; 
 import { useDispatch } from 'react-redux';
-
+import { MassageError } from "../MassageError";
 
 export const EventForm = props => {
     const dispatch = useDispatch(); 
 
-    const [value, setValue] = useState({
+    const [value, setValue] = React.useState({
         text: '', 
         start: 0, 
         duration: 0,
         isConfirm: false
-    })
+    });  
 
     function handleSubmit(e) {
         e.preventDefault(); 
@@ -26,8 +26,8 @@ export const EventForm = props => {
                     duration: value.duration, 
                     id: Date.now(), 
                 }
-                console.log(item);
                 dispatch(props.func(item, props.id)); 
+                props.closePopup()
         }
     }   
 
@@ -42,7 +42,7 @@ export const EventForm = props => {
                     id="text"
                     placeholder="TASK" 
                     onChange={changeHandler}/>
-        {value.text  ? null : <MassageError massage="You need to type something in this input"/> }
+        {value.text || !value.isConfirm ? null : <MassageError massage="You need to type something in this input"/> }
 
         <input type="number" 
                 name="start" 

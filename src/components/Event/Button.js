@@ -10,7 +10,8 @@ export const Button = props => {
         <button className={classNames("changeEvent__item", {
             "btn-edit": props.edit, 
             'btn-delete': props.del
-        })}>
+        }) } 
+        onClick={props.func}>
           {props.name}
         </button>
     )

@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from './Button';
 import CloseBtn from './CloseBtn'
 import { EventForm } from './EventForm';
 
 export const ChangeEvent = (props) => {
+    const [state, setState] = useState(false)
+
+    const handleEdit = () => {
+        console.log("edit");
+        setState(true)
+    }
+
+    const handleDelete =() => {
+        console.log("delete");
+    }
+
     return (
         <div className="changeEvent">
                 <div className="event-window-changeEvent">
-                    <Button edit name={<i class="far fa-edit"></i>}/>
-                    <Button del name={<i class="far fa-trash-alt"></i>}/>
+                    <Button edit func={handleEdit} name={<i className="far fa-edit"></i>}/>
+                    <Button del func={handleDelete} name={<i className="far fa-trash-alt"></i>}/>
                     <CloseBtn/>
                 </div>      
 
@@ -18,7 +29,8 @@ export const ChangeEvent = (props) => {
                     <br/>
                     <span className="changeEvent-defaultTxt__time">time</span>
                 </div>
-               <EventForm />
+
+              {state && <EventForm />}
             
             </div>
     )

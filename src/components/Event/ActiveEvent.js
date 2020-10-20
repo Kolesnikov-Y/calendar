@@ -1,20 +1,29 @@
-import React, { useState } from 'react'; 
-import {useDispatch} from 'react-redux'
+import React, { useEffect, useRef } from 'react'; 
 import {addTask} from '../../redux/actions'; 
-import { MassageError } from '../MassageError';
 import CloseBtn from './CloseBtn';
 import { EventForm } from './EventForm';
 
-export const ActiveEvent = props => {
-  
+export const ActiveEvent = ({id, time, closePopup}) => {
+    const windowRef = useRef(); 
     
+    useEffect(() => {
+        document.body.addEventListener('click', outsideClosePopup); 
+    }, [])
+
+    function outsideClosePopup(e) {
+       const path = e.path || (e.composedPath && e.composedPath()) 
+        if(!path.includes(windowRef.current)){
+            closePopup(); 
+        }
+    }
+
     return(
-        <div className="event-window">
+        <div ref={windowRef} className="event-window">
             <div className="event-window-container">
                 <div className="event-window__closeBtn">
-                    <CloseBtn/>
+                    <CloseBtn closePopup={closePopup}/>
                 </div>
-                <EventForm func={addTask}/>
+                <EventForm closePopup={closePopup} func={addTask} id={id} time={time}/>
             </div>
         </div>
     )
