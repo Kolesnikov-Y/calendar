@@ -3,6 +3,7 @@ export const RENDER_DATA = "RENDER_DATA";
 export const ADD_TASK = "TASK/ADD_TASK"; 
 export const DELETE_TASK = "TASK/DELETE_TASK"; 
 export const EDIT_TASK = "TASK/EDIT_TASK"; 
+export const GET_ITEM = "CHANGE_EVENT/GET_ITEM"
 
 export const START_LOADING = "LOADING/START_LOADING"; 
 export const END_LOADING = "LOADING/END_LOADING"; 

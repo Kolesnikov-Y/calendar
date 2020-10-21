@@ -1,16 +1,19 @@
-import React from 'react'
+import React from 'react'; 
+import { useDispatch } from 'react-redux';
+import { getID } from '../redux/actions';
+import { ChangeEvent } from './Event/ChangeEvent';
 
-export const BodyItem = props => {
+export const BodyItem = ({title, openFunc, id}) => {
 
-    function clickHandler() {
-        props.func(); 
-        console.log(props.func);
-    }
-
+    const dispatch = useDispatch(); 
+ 
+    const clickHandler = () => {
+        openFunc();
+        dispatch(getID(id))
+    } 
     return (
         <div className="calendar-item__body-item" onClick={clickHandler}>
-                  {props.title}
-            {/* <ChangeEvent text={props.title}/> */}
+                  <div>{title}</div>
         </div>
     )
 }

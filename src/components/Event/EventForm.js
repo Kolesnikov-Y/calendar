@@ -24,9 +24,9 @@ export const EventForm = props => {
                     title: value.text,
                     start: value.start,
                     duration: value.duration, 
-                    id: Date.now(), 
+                    id: props.itemID || Date.now(), 
                 }
-                dispatch(props.func(item, props.id)); 
+                dispatch(props.func(item, props.id, props.itemID)); 
                 props.closePopup()
         }
     }   
@@ -50,7 +50,7 @@ export const EventForm = props => {
                 placeholder="start in minutes"
                 onChange={changeHandler} 
                 className="event-window__input"/>
-        {!value.start || value.start >= 30  ? <MassageError massage="max value need to be 30! pleace enter value < 30"/> : null}
+        {!value.start || value.start >= 30 || value.isConfirm ? <MassageError massage="max value need to be 30! pleace enter value < 30"/> : null}
 
         <input type="number" 
                 name="duration" 
@@ -59,7 +59,7 @@ export const EventForm = props => {
                 min='0'  
                 onChange={changeHandler} 
                 className="event-window__input"/>
-        {!value.duration ? <MassageError massage="this is duration of your event"/> : null}
+        {value.duration || value.isConfirm ? <MassageError massage="this is duration of your event"/> : null }
         <button className="event-window__submit" type="submit">confirm</button>
     </form>
     )

@@ -110,12 +110,12 @@
 
 .changeEvent{
   position: absolute;
-  width: 300px;
+  width: 250px;
   height: auto;
-  right: -300px;
+  right: -250px;
   top: 0;
   border: 1px solid red;
-  z-index: 300;
+  z-index: 99;
 }
 
 .event-window-changeEvent{

@@ -1,4 +1,4 @@
-import { ADD_TASK, CLOSE_MODAL, END_LOADING, IS_MODAL_CLOSE, IS_MODAL_OPEN, OPEN_MODAL, RENDER_DATA, START_LOADING } from "./types";
+import { ADD_TASK, CLOSE_MODAL, END_LOADING, IS_MODAL_CLOSE, IS_MODAL_OPEN, OPEN_MODAL, RENDER_DATA, START_LOADING, EDIT_TASK, DELETE_TASK, GET_ITEM } from "./types";
 
 export function startLoading() {
     return({
@@ -53,5 +53,29 @@ export function addTask(payload, id) {
 export function renderData( ){
     return({
         type: RENDER_DATA
+    })
+}
+
+export function editTask(id, data, itemID) {
+    return ({
+        type: EDIT_TASK, 
+        id, 
+        data, 
+        itemID
+    })
+}
+
+export function deleteTask(id, itemID){
+    return ({
+        type: DELETE_TASK, 
+        id, 
+        itemID
+    })
+}
+
+export function getID(id) {
+    return ({
+        type: GET_ITEM, 
+        id
     })
 }

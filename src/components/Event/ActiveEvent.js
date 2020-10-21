@@ -8,13 +8,15 @@ export const ActiveEvent = ({id, time, closePopup}) => {
     
     useEffect(() => {
         document.body.addEventListener('click', outsideClosePopup); 
-    }, [])
+    })
 
     function outsideClosePopup(e) {
        const path = e.path || (e.composedPath && e.composedPath()) 
         if(!path.includes(windowRef.current)){
             closePopup(); 
+            console.log(e.target);
         }
+        document.body.removeEventListener("click", outsideClosePopup)
     }
 
     return(

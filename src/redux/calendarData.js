@@ -1,4 +1,4 @@
-import { RENDER_DATA , IS_MODAL_OPEN, IS_MODAL_CLOSE, ADD_TASK, DELETE_TASK, EDIT_TASK} from "./types"
+import { RENDER_DATA , IS_MODAL_OPEN, IS_MODAL_CLOSE, ADD_TASK, DELETE_TASK, EDIT_TASK, GET_ITEM} from "./types"
 
 const initialState = {
     isVisible: false,
@@ -22,7 +22,8 @@ const initialState = {
         {time: "4:00", id: 480, items: [], isOpen: false},
         {time: "4:30", id: 510, items: [], isOpen: false},
         {time: "5:00", id: 540, items: [], isOpen: false},
-    ] 
+    ], 
+    itemForChange: 0
 }
 export default function calendarData (state=initialState, action) {
     switch(action.type){
@@ -30,21 +31,36 @@ export default function calendarData (state=initialState, action) {
             return state ={...state, isVisible: true}; 
 
         case ADD_TASK: 
-           const addedItem = state.calendarTime.map(i => {
-               if(i.id === action.id){
-                   return i =  {...i, items: [...i.items, action.payload]}; 
-               }else{
-                   return i
-               }
-            }); 
-
-            return state = {...state, calendarTime: addedItem}; 
+            return state = {...state, calendarTime: state.calendarTime.map(i => {
+                if(i.id === action.id){
+                    return i =  {...i, items: [...i.items, action.payload]}; 
+                }else{
+                    return i
+                }
+             })}; 
 
         case DELETE_TASK: 
-            return state; 
+            return state = {...state, calendarTime: state.calendarTime.map(i => {
+                if(i.id === action.id){
+                    return i =  {...i, items: i.items.filter(item => item.id !== action.itemID)}; 
+                }else{
+                    return i
+                }
+             }) }; 
 
         case EDIT_TASK: 
-            return state; 
+            const editTask = state.calendarTime.map(i => {
+                if(i.id === action.id){
+                    return i =  {...i, items: state.calendarTime.items.map(item => item.id === action.itemID ? item = action.payload : item)}; 
+                }else{
+                    return i
+                }
+             })
+
+            return state = {...state, calendarTime: editTask}; 
+
+        case GET_ITEM: 
+            return state = {...state, itemForChange: action.id}
 
         case IS_MODAL_OPEN: 
             const item = state.calendarTime.find(i => i.id === action.id)
