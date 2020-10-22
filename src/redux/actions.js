@@ -56,7 +56,7 @@ export function renderData( ){
     })
 }
 
-export function editTask(id, data, itemID) {
+export function editTask(data, id, itemID) {
     return ({
         type: EDIT_TASK, 
         id, 

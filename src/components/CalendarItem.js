@@ -39,7 +39,7 @@ export const CalendarItem = props => {
             }
             
             <div className="calendar-item__body" onClickCapture={handelOpen}>
-               {props.items.length ? props.items.map(i => <BodyItem key={i.id} time={props.time} openFunc={handleOpenChangePopup} title={i.title} id={i.id}/>) : null} 
+               {props.items.length ? props.items.map(i => <BodyItem key={i.id} time={props.time} openFunc={handleOpenChangePopup} title={i.title} id={i.id} item={i}/>) : null} 
             </div>
         </div>
     )

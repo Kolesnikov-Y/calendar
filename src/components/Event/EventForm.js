@@ -26,6 +26,8 @@ export const EventForm = props => {
                     duration: value.duration, 
                     id: props.itemID || Date.now(), 
                 }
+
+                console.log("log from FORM: ", props.id, "itemID", props.itemID, "item id", item.id);
                 dispatch(props.func(item, props.id, props.itemID)); 
                 props.closePopup()
         }

@@ -51,7 +51,14 @@ export default function calendarData (state=initialState, action) {
         case EDIT_TASK: 
             const editTask = state.calendarTime.map(i => {
                 if(i.id === action.id){
-                    return i =  {...i, items: state.calendarTime.items.map(item => item.id === action.itemID ? item = action.payload : item)}; 
+                    return i =  {...i, items: i.items.map(item => {
+                        if(item.id === action.itemID){
+                            return item = action.data
+                        }else{
+                           return item
+                        } 
+                    }
+                )}; 
                 }else{
                     return i
                 }
